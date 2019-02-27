@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: apache
+    build:
+     context: ./webapp
+     dockerfile: Dockerfile
+    container_name: apache_web
+    restart: always
+    ports:
+      - "8080:80"
+
+  spring-boot-rest-api-app:
+    image: spring-boot-rest-docker-image
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8080
+    volumes:
+      - /data/spring-boot-app
