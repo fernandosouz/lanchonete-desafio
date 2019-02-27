@@ -1,0 +1,8 @@
+com.example.dextrastartup.demo
+com.example.dextrastartup.demo.controllers
+com.example.dextrastartup.demo.endpoint
+com.example.dextrastartup.demo.exceptions
+com.example.dextrastartup.demo.model
+com.example.dextrastartup.demo.repositories
+com.example.dextrastartup.demo.utils
+com.example.dextrastartup.demo.wrappers
