@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class LancheRepositorio {
 
-    /** Método que retorna um lanche específico de acordo com o código passado.
+    /**  Método que retorna um lanche específico de acordo com o código passado.
      * @author Fernando Henrique de Souza
      * @param codigoDoLanche Código do lanche que será retornado.
      * @return Lanche retornado definido por código.
