@@ -4,49 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
-    <title>Bootstrap 101 Template</title>
 
-    <!-- Bootstrap -->
+    <title>Desafio!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
-    <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
-      .active{
-        color: green;
-      }
-
-      .lista-ingredientes{
-        visibility: hidden;
-        padding: 0 20%;
-      }
-
-      .lanches-cardapio{
-        text-align: center;
-      }
-
-      .dropdown-lanches-cardapio{
-        left: 50%;
-        right: auto;
-        text-align: center;
-        transform: translate(-50%, 0);
-      }
-
-      .botao-acabei{
-        text-align: center;
-      }
-
-      .texto-titulo{
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <script src="script.js"></script>
     <h1 class="texto-titulo">Olá, temos os melhores lanches do mundo!</h1>
     <div class="dropdown lanches-cardapio">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -151,103 +115,8 @@
         <h4 id="valor-desconto"></h4>
       </div>
     </div>
-
-
-
-
-
-    <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
-<script>
-
-  var lancheEscolhido = 0;
-
-  function chamaServicoCalculoDoPreco(){
-      var listaDeIngredientes = [];
-      listaDeIngredientes.push({codigo: 1, quantidade: 2, descricao:"", valor: 1.0});
-      var ingrediente = {};
-      ingrediente.codigo = 1;
-      ingrediente.descricao = "asda";
-      var ingredientes = [];
-
-      ingredientes.push({"codigo":1, "quantidade": parseInt(document.getElementById("quantidadeAlface").innerText)});
-      ingredientes.push({"codigo":2, "quantidade": parseInt(document.getElementById("quantidadeBacon").innerText)});
-      ingredientes.push({"codigo":3, "quantidade": parseInt(document.getElementById("quantidadeHamburguer").innerText)});
-      ingredientes.push({"codigo":4, "quantidade": parseInt(document.getElementById("quantidadeOvo").innerText)});
-      ingredientes.push({"codigo":5, "quantidade": parseInt(document.getElementById("quantidadeQueijo").innerText)});
-
-      console.log(ingredientes);
-      var a = { "ingredientes":   ingredientes,
-                "codigoDoLanche": lancheEscolhido}
-
-      $.ajax({
-        url: "http://localhost:8089/lanche/detalhesDoPedido",
-        type: "POST",
-        contentType : "application/json",
-        data: JSON.stringify(a),
-        dataType: "json",
-        success: function (result) {
-            mostraResultados(result);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          console.log('error');
-        }
-    });
-  }
-
-  function mostraResultados(resultados){
-    console.log(resultados);
-      var aplicouPromocao = resultados.listaDePromocoes.lenght != 0;
-
-      console.log(aplicouPromocao);
-
-      var valorTotal = resultados.valorTotal;
-      document.getElementById('resultados').style.visibility = 'visible';
-      document.getElementById('mostraValortotal').innerText = "O valor total do seu pedido é: R$" + resultados.valorTotal;
-
-      if(aplicouPromocao){
-          document.getElementById("promocoes").style.visibility = 'visible';
-          document.getElementById("valor-desconto").innerText = "Valor com desconto: R$" + resultados.valorComDesconto;
-          console.log(resultados.listaDePromocoes);
-          document.getElementById('texto-promocoes').innerText = "";
-          for(var n in resultados.listaDePromocoes){
-            var promocao = resultados.listaDePromocoes[n];
-            document.getElementById('texto-promocoes').innerText += promocao.nome +": "+ promocao.descricao;
-          }
-
-      }
-  }
-
-  function percorrerIngredientesDoLanche(lanche){
-    console.log(lanche);
-    for(var ingrediente in lanche) {
-      colocaQuantidadePadraoEmIngrediente(ingrediente, lanche[ingrediente])
-    }
-  }
-
-  function colocaQuantidadePadraoEmIngrediente(id, quantidade){
-    document.getElementById(id).innerText = quantidade
-  }
-
-  function adicionarIngrediente(id) {
-    if(parseInt(document.getElementById(id).innerText) >= 0){
-        document.getElementById(id).innerText = parseInt(document.getElementById(id).innerText) + 1;
-    }
-  }
-
-  function removerIngrediente(id) {
-    if(parseInt(document.getElementById(id).innerText) > 0){
-        document.getElementById(id).innerText = parseInt(document.getElementById(id).innerText) - 1;
-    }
-  }
-
-  function mostrarIngredientesDoLanche(codigo, nome){
-    document.getElementById('toggleOption').innerText = nome;
-    lancheEscolhido = codigo;
-    document.getElementById("lista-ingredientes").style.visibility = "visible";
-  }
-</script>

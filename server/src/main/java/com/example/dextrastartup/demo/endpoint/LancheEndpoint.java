@@ -2,7 +2,7 @@ package com.example.dextrastartup.demo.endpoint;
 
 import com.example.dextrastartup.demo.model.*;
 import com.example.dextrastartup.demo.controllers.LancheController;
-import com.example.dextrastartup.demo.repositories.LancheRepositorio;
+import com.example.dextrastartup.demo.repositories.LancheRepository;
 import com.example.dextrastartup.demo.wrappers.LancheWrapperRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,8 @@ import org.springframework.web.bind.annotation.*;
 public class LancheEndpoint {
     @RequestMapping(value="/detalhesDoPedido", method=RequestMethod.POST,consumes="application/json",produces="application/json")
     @ResponseBody
-    public Lanche detalhesDoPedido(@RequestBody LancheWrapperRequest wrapper) {
-
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(wrapper.getCodigoDoLanche());
-
+    public LancheModel detalhesDoPedido(@RequestBody LancheWrapperRequest wrapper) {
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(wrapper.getCodigoDoLanche());
         LancheController lancheController = new LancheController(lanche);
         return lancheController.aplicarAlteracoes(wrapper.getIngredientes());
     }

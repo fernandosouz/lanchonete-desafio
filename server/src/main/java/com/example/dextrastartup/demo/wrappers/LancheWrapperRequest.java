@@ -1,6 +1,6 @@
 package com.example.dextrastartup.demo.wrappers;
 
-import com.example.dextrastartup.demo.model.Ingrediente;
+import com.example.dextrastartup.demo.model.IngredienteModel;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class LancheWrapperRequest {
 
-    private List<Ingrediente> ingredientes;
+    private List<IngredienteModel> ingredientes;
     private Integer codigoDoLanche;
 
     public Integer getCodigoDoLanche() {
@@ -24,11 +24,11 @@ public class LancheWrapperRequest {
         this.codigoDoLanche = codigoDoLanche;
     }
 
-    public List<Ingrediente> getIngredientes() {
+    public List<IngredienteModel> getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(List<Ingrediente> ingredientes) {
+    public void setIngredientes(List<IngredienteModel> ingredientes) {
         this.ingredientes = ingredientes;
     }
 }

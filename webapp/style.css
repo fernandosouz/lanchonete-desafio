@@ -1,0 +1,27 @@
+.active{
+  color: green;
+}
+
+.lista-ingredientes{
+  visibility: hidden;
+  padding: 0 20%;
+}
+
+.lanches-cardapio{
+  text-align: center;
+}
+
+.dropdown-lanches-cardapio{
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+.botao-acabei{
+  text-align: center;
+}
+
+.texto-titulo{
+  text-align: center;
+}

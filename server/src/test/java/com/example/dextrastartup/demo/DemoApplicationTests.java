@@ -1,11 +1,10 @@
 package com.example.dextrastartup.demo;
 
-import com.example.dextrastartup.demo.model.Ingrediente;
-import com.example.dextrastartup.demo.model.Lanche;
+import com.example.dextrastartup.demo.model.IngredienteModel;
+import com.example.dextrastartup.demo.model.LancheModel;
 import com.example.dextrastartup.demo.controllers.LancheController;
-import com.example.dextrastartup.demo.repositories.IngredienteRepositorio;
-import com.example.dextrastartup.demo.repositories.LancheRepositorio;
-import com.example.dextrastartup.demo.wrappers.LancheWrapperRequest;
+import com.example.dextrastartup.demo.repositories.IngredienteRepository;
+import com.example.dextrastartup.demo.repositories.LancheRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,19 +22,19 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testaValorDeUmLanchePadrao() throws Exception {
-		double valorLanche = LancheRepositorio.retornaLanchePorCodigo(1).retornaValorTotal();
+		double valorLanche = LancheRepository.retornaLanchePorCodigo(1).retornaValorTotal();
 
 		double valorLanchePorIngrediente = 0;
-		valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(2).getValor();
-		valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(3).getValor();
-		valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(5).getValor();
+		valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(2).getValor();
+		valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(3).getValor();
+		valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(5).getValor();
 
 		assertEquals(valorLanche, valorLanchePorIngrediente, 0.001);
 	}
 
     @Test
     public void testaValorDeUmLanchePersonalizado() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(1);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(1);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade(5, 1);
         lancheController.adicionarIngredientePorCodigoEQuantidade(3, 1);
@@ -44,12 +43,12 @@ public class DemoApplicationTests {
         double valorLanche = lanche.getValorTotal();
 
         double valorLanchePorIngrediente = 0;
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(2).getValor();
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(3).getValor();
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(5).getValor();
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(5).getValor();
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(3).getValor();
-        valorLanchePorIngrediente += IngredienteRepositorio.retornaIngredientePorCodigo(1).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(2).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(3).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(5).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(5).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(3).getValor();
+        valorLanchePorIngrediente += IngredienteRepository.retornaIngredientePorCodigo(1).getValor();
 
         assertEquals(valorLanche, valorLanchePorIngrediente, 0.001);
     }
@@ -57,7 +56,7 @@ public class DemoApplicationTests {
 
     @Test
     public void testaSeUmLancheFoiPersonalizado() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(1);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(1);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade( 5, 1);
         lancheController.adicionarIngredientePorCodigoEQuantidade( 3, 1);
@@ -68,13 +67,13 @@ public class DemoApplicationTests {
 
     @Test
     public void testaSeUmLancheFoiNaoFoiPersonalizado() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(5);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(5);
         assertEquals(lanche.foiPersonalizado(), false);
     }
 
     @Test
     public void testaQuantidadeDePorcoesASerDescontadaMuitoQueijoEmXEggQuandoHouverTresPorcoes() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(3);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(3);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade( 5, 2);
         assertEquals((int)lancheController.retornaQuantidadeDeAplicacoesPorCodigoDeProduto(5), 1);
@@ -82,7 +81,7 @@ public class DemoApplicationTests {
 
     @Test
     public void testaQuantidadeDePorcoesASerDescontadaMuitoQueijoEmXBaconQuandoHouverSetePorcoes() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(1);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(1);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade(5, 6);
 
@@ -91,7 +90,7 @@ public class DemoApplicationTests {
 
     @Test
     public void testaQuantidadeDePorcoesASerDescontadaMuitoQueijoEmXEggQuandoHouverDuasPorcoes() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(3);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(3);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade(5, 1);
 
@@ -100,7 +99,7 @@ public class DemoApplicationTests {
 
     @Test
     public void testaSePromocaoLightFoiAplicadaEmXBurguerQuandoApto() throws Exception {
-	    Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(2);
+	    LancheModel lanche = LancheRepository.retornaLanchePorCodigo(2);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade( 1, 1);
 	    lancheController.aplicaPromocoes();
@@ -110,7 +109,7 @@ public class DemoApplicationTests {
 
     @Test
     public void testaSePromocaoLightNaoFoiAplicadaEmXBurguerQuandoNaoApto() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(2);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(2);
         lanche.setListaDePromocoes(new ArrayList<>());
         lancheController.setLanche(lanche);
         lancheController.aplicaPromocoes();
@@ -120,12 +119,12 @@ public class DemoApplicationTests {
 
     @Test
     public void testaSeQuantidadeTotalAdicionadaEstaCorreta() throws Exception {
-        Lanche lanche = LancheRepositorio.retornaLanchePorCodigo(2);
+        LancheModel lanche = LancheRepository.retornaLanchePorCodigo(2);
         lancheController.setLanche(lanche);
         lancheController.adicionarIngredientePorCodigoEQuantidade(5, 3);
         lancheController.adicionarIngredientePorCodigoEQuantidade(1, 2);
         int quantidadeTotalDeIngredientes = 0;
-        for(Ingrediente ingrediente: lanche.getListaDeIngredientes()){
+        for(IngredienteModel ingrediente: lanche.getListaDeIngredientes()){
             quantidadeTotalDeIngredientes += ingrediente.getQuantidade();
         }
 

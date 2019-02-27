@@ -1,10 +1,10 @@
 package com.example.dextrastartup.demo.controllers;
 
-import com.example.dextrastartup.demo.model.Ingrediente;
-import com.example.dextrastartup.demo.model.Lanche;
-import com.example.dextrastartup.demo.model.Promocao;
-import com.example.dextrastartup.demo.repositories.IngredienteRepositorio;
-import com.example.dextrastartup.demo.repositories.PromocaoRepositorio;
+import com.example.dextrastartup.demo.model.IngredienteModel;
+import com.example.dextrastartup.demo.model.LancheModel;
+import com.example.dextrastartup.demo.model.PromocaoModel;
+import com.example.dextrastartup.demo.repositories.IngredienteRepository;
+import com.example.dextrastartup.demo.repositories.PromocaoRepository;
 
 import java.util.List;
 
@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class LancheController {
 
-    Lanche lanche;
+    LancheModel lanche;
 
     /**
      *
      *  Construtor que define lanche que será manipulado.
      **/
-    public LancheController(Lanche lanche) {
+    public LancheController(LancheModel lanche) {
         this.lanche = lanche;
     }
 
@@ -35,11 +35,11 @@ public class LancheController {
 
     }
 
-    public Lanche getLanche() {
+    public LancheModel getLanche() {
         return lanche;
     }
 
-    public void setLanche(Lanche lanche) {
+    public void setLanche(LancheModel lanche) {
         this.lanche = lanche;
     }
 
@@ -58,7 +58,7 @@ public class LancheController {
         if(codigoDaPromocao == 1){
             quantidadeDeAplicacoes = 1;
         }
-        Promocao promocao = PromocaoRepositorio.retornaPromocaoPorCodigo(codigoDaPromocao);
+        PromocaoModel promocao = PromocaoRepository.retornaPromocaoPorCodigo(codigoDaPromocao);
         lanche.getListaDePromocoes().add(promocao);
         promocao.setQuantidade(quantidadeDeAplicacoes);
 
@@ -69,15 +69,14 @@ public class LancheController {
                 break;
             case 2:
                 /*Promoção 2 - Desconta 1 porção a cada 3 porções de queijo.*/
-                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepositorio.retornaIngredientePorCodigo(5).getValor()));
+                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(5).getValor()));
                 break;
             case 3:
                 /*Promoção 3 - Desconta 1 porção a cada 3 porções de hambúrguer de carne.*/
-                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepositorio.retornaIngredientePorCodigo(3).getValor()));
+                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(3).getValor()));
                 break;
             default:
                 break;
-
         }
     }
 
@@ -91,8 +90,8 @@ public class LancheController {
     public Boolean participaDaPromocao(Integer codigoDaPromocao) {
         switch (codigoDaPromocao) {
             case 1:
-                Ingrediente ingredienteAlface = new Ingrediente(1);
-                Ingrediente ingredienteBacon = new Ingrediente(2);
+                IngredienteModel ingredienteAlface = new IngredienteModel(1);
+                IngredienteModel ingredienteBacon = new IngredienteModel(2);
                 /*Se tem alface e não tem bacon*/
                 return lanche.getListaDeIngredientes().contains(ingredienteAlface)
                         && !lanche.getListaDeIngredientes().contains(ingredienteBacon);
@@ -141,10 +140,7 @@ public class LancheController {
      * @param quantidade Código da promoção que será aplicada
      */
     public void adicionarIngredientePorCodigoEQuantidade(Integer codigoDoIngrediente, Integer quantidade){
-        if(quantidade == 0){
-            return;
-        }
-        Ingrediente ingrediente = IngredienteRepositorio.retornaIngredientePorCodigo(codigoDoIngrediente);
+        IngredienteModel ingrediente = IngredienteRepository.retornaIngredientePorCodigo(codigoDoIngrediente);
         int index = lanche.getListaDeIngredientes().indexOf(ingrediente);
         if (lanche.getListaDeIngredientes().contains(ingrediente)) {
             lanche.getListaDeIngredientes().get(index).setQuantidade(lanche.getListaDeIngredientes().get(index).getQuantidade() + quantidade);
@@ -164,11 +160,15 @@ public class LancheController {
      * @param ingredienteList lista de ingredientes que será adicionada ao lanche
      * @return Lanche com as alterações
      */
-    public Lanche aplicarAlteracoes(List<Ingrediente> ingredienteList){
-        for(Ingrediente ingrediente: ingredienteList){
-            adicionarIngredientePorCodigoEQuantidade(ingrediente.getCodigo(), ingrediente.getQuantidade());
+    public LancheModel aplicarAlteracoes(List<IngredienteModel> ingredienteList){
+        for(IngredienteModel ingrediente: ingredienteList){
+            if(ingrediente.getQuantidade() > 0){
+                adicionarIngredientePorCodigoEQuantidade(ingrediente.getCodigo(), ingrediente.getQuantidade());
+            }
         }
+
         aplicaPromocoes();
+
         return lanche;
     }
 }

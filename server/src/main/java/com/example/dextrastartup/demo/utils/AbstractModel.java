@@ -1,9 +1,5 @@
 package com.example.dextrastartup.demo.utils;
 
-import com.example.dextrastartup.demo.model.Lanche;
-
-import java.util.Objects;
-
 public class AbstractModel {
 
     private Integer codigo;
