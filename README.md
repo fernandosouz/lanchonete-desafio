@@ -22,10 +22,9 @@ Somos uma startup do ramo de alimentos e precisamos de uma aplicação web para 
 * Docker Compose instalado;
 
 #### Passos para execução:
-`git clone https://github.com/fernandosouz/lanchonete-desafio.git`
-
-
-* run : `cd lanchonete-desafio/` 
+* clonar o repositório: `git clone https://github.com/fernandosouz/lanchonete-desafio.git`
+* run: `cd lanchonete-desafio/`
+ 
 (Talvez seja necessário dar permissão para executar o comando a seguir)
 * run: `./start.sh`
 * acessar: [localhost:8080](http://localhost:8080)
