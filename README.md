@@ -36,6 +36,8 @@ Para iniciar o seviço:
 Para parar:
 * run: `./stop.sh`
 
+* acessar: [localhost:8080]
+
 #### Documentação:
 ###### JAVADOC
 [JAVADOC](https://joseslneto.github.io/logistics_center/)
