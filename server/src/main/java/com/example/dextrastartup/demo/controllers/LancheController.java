@@ -68,12 +68,12 @@ public class LancheController {
                 lanche.setValorComDesconto(lanche.getValorTotal() - lanche.getValorTotal()/10);
                 break;
             case 2:
-                /*Promoção 2 - Desconta 1 porção a cada 3 porções de queijo.*/
-                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(5).getValor()));
-                break;
-            case 3:
                 /*Promoção 3 - Desconta 1 porção a cada 3 porções de hambúrguer de carne.*/
                 lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(3).getValor()));
+                break;
+            case 3:
+                /*Promoção 2 - Desconta 1 porção a cada 3 porções de queijo.*/
+                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(5).getValor()));
                 break;
             default:
                 break;
@@ -97,10 +97,11 @@ public class LancheController {
                         && !lanche.getListaDeIngredientes().contains(ingredienteBacon);
             case 2:
                 /*Se tem 3 ou mais porções de hambúrguer de carne*/
-                return 3 <= (int) retornaQuantidadeDeAplicacoesPorCodigoDeProduto(3);
+                return 0 < (int) retornaQuantidadeDeAplicacoesPorCodigoDeProduto(3);
             case 3:
                 /*Se tem 3 ou mais porções de queijo*/
-                return 3 <= (int) retornaQuantidadeDeAplicacoesPorCodigoDeProduto(5);
+                int a = (int) retornaQuantidadeDeAplicacoesPorCodigoDeProduto(5);
+                return 0 < a;
             default: return false;
         }
     }
@@ -114,10 +115,10 @@ public class LancheController {
             aplicaPromocao(1, null);
         }
         if(participaDaPromocao(2)){
-            aplicaPromocao(1, retornaQuantidadeDeAplicacoesPorCodigoDeProduto(3));
+            aplicaPromocao(2, retornaQuantidadeDeAplicacoesPorCodigoDeProduto(3));
         }
         if(participaDaPromocao(3)){
-            aplicaPromocao(1, retornaQuantidadeDeAplicacoesPorCodigoDeProduto(5));
+            aplicaPromocao(3, retornaQuantidadeDeAplicacoesPorCodigoDeProduto(5));
         }
     }
 

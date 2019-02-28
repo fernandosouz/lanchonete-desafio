@@ -25,3 +25,8 @@
 .texto-titulo{
   text-align: center;
 }
+
+.resultados{
+  text-align: center;
+  visibility: hidden
+}

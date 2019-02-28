@@ -14,7 +14,7 @@
     <h1 class="texto-titulo">Olá, temos os melhores lanches do mundo!</h1>
     <div class="dropdown lanches-cardapio">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <p id="toggleOption">Clique aqui para escolher seu Lanche</p>
+        <p id="toggleOption">Clique aqui para escolher seu lanche</p>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-lanches-cardapio" aria-labelledby="dropdownMenu1">
@@ -107,15 +107,18 @@
       </div>
     </div>
 
-    <div id="resultados" style="visibility: hidden">
-      <h1 id="mostraValortotal"></h1>
+    <div id="resultados" class="resultados" style="visibility: hidden">
+      <h3 id="mostraValortotal"></h3>
       <div id="promocoes" style="visibility: hidden">
-        <h1>As seguintes promoções foram aplicadas a você:</h1>
+        <h3>As seguintes promoções foram aplicadas a você:</h3>
         <h4 id="texto-promocoes"></h4>
-        <h4 id="valor-desconto"></h4>
+        <h2 id="valor-desconto"></h2>
+      </div>
+      <div class="botao-acabei">
+        <button type="button" class="btn" onclick="reiniciaPagina()">Fazer outro pedido!</button>
       </div>
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>

@@ -2,6 +2,8 @@
   var lancheEscolhido = 0;
 
   function chamaServicoCalculoDoPreco(){
+
+      console.log(document.getElementById("toggleOption").innerText);
       var listaDeIngredientes = [];
       listaDeIngredientes.push({codigo: 1, quantidade: 2, descricao:"", valor: 1.0});
       var ingrediente = {};
@@ -19,7 +21,7 @@
                 "codigoDoLanche": lancheEscolhido}
 
       $.ajax({
-        url: "http://localhost:8089/lanche/detalhesDoPedido",
+        url: "http://localhost:8080/lanche/detalhesDoPedido",
         type: "POST",
         contentType : "application/json",
         data: JSON.stringify(a),
@@ -35,20 +37,39 @@
     });
   }
 
+  function reiniciaPagina(){
+      document.getElementById("quantidadeAlface").innerText = 0;
+      document.getElementById("quantidadeBacon").innerText = 0;
+      document.getElementById("quantidadeHamburguer").innerText = 0;
+      document.getElementById("quantidadeOvo").innerText = 0;
+      document.getElementById("quantidadeQueijo").innerText = 0;
+
+      document.getElementById('toggleOption').innerText = "Clique aqui para escolher seu lanche";
+
+      document.getElementById("promocoes").style.visibility = 'hidden';
+      document.getElementById("resultados").style.visibility = 'hidden';
+  }
+
   function mostraResultados(resultados){
-      var aplicouPromocao = resultados.listaDePromocoes.lenght != 0;
+      document.getElementById("promocoes").style.visibility = 'hidden';
+      document.getElementById("resultados").style.visibility = 'hidden';
+      document.getElementById("lista-ingredientes").style.display = 'none';
+
+      console.log(resultados.listaDePromocoes );
+      var aplicouPromocao = resultados.listaDePromocoes.length > 0;
 
       var valorTotal = resultados.valorTotal;
       document.getElementById('resultados').style.visibility = 'visible';
       document.getElementById('mostraValortotal').innerText = "O valor total do seu pedido é: R$" + resultados.valorTotal;
 
+      console.log(aplicouPromocao);
       if(aplicouPromocao){
           document.getElementById("promocoes").style.visibility = 'visible';
           document.getElementById("valor-desconto").innerText = "Valor com desconto: R$" + resultados.valorComDesconto;
           document.getElementById('texto-promocoes').innerText = "";
           for(var n in resultados.listaDePromocoes){
             var promocao = resultados.listaDePromocoes[n];
-            document.getElementById('texto-promocoes').innerText += promocao.nome +": "+ promocao.descricao;
+            document.getElementById('texto-promocoes').innerText += promocao.nome +": "+ promocao.descricao + "\n";
           }
 
       }
@@ -78,6 +99,8 @@
 
   function mostrarIngredientesDoLanche(codigo, nome){
     document.getElementById('toggleOption').innerText = nome;
+    document.getElementById('lista-ingredientes').style.display = "grid";
+
     lancheEscolhido = codigo;
     document.getElementById("lista-ingredientes").style.visibility = "visible";
   }
