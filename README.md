@@ -38,4 +38,4 @@ Para parar o serviço:
 
 #### Documentação:
 ###### JAVADOC
-[JAVADOC](https://joseslneto.github.io/logistics_center/)
+[JAVADOC](https://fernandosouz.github.io/lanchonete-desafio/)
