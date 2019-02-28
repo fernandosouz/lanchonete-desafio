@@ -1,7 +1,7 @@
 
 Desafio - Lanchonete
 
-#Resumo do problema
+####Resumo do problema:
 Somos uma startup do ramo de alimentos e precisamos de uma aplicação web para gerir nosso negócio. Nossa especialidade é a venda de lanches, de modo que alguns lanches são opções de cardápio e outros podem conter ingredientes personalizados.
 
 #### Concepção do sistema:
@@ -25,15 +25,17 @@ Somos uma startup do ramo de alimentos e precisamos de uma aplicação web para 
 `git clone https://github.com/fernandosouz/lanchonete-desafio.git`
 
 * run : `cd lanchonete-desafio/`
+
 (Talvez seja necessário dar permissão para os scripts) 
 * run: `chmod +x /start.sh`
 * run: `chmod +x /stop.sh`
 
 Para iniciar o seviço:
 * run: `./start.sh`
+
 Para parar:
 * run: `./stop.sh`
 
 #### Documentação:
 ###### JAVADOC
-[JAVADOC - Logistics Center](https://joseslneto.github.io/logistics_center/)
+[JAVADOC](https://joseslneto.github.io/logistics_center/)
