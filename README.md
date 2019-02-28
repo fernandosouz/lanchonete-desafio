@@ -29,14 +29,12 @@ Somos uma startup do ramo de alimentos e precisamos de uma aplicação web para 
 (Talvez seja necessário dar permissão para os scripts) 
 * run: `chmod +x /start.sh`
 * run: `chmod +x /stop.sh`
-
-Para iniciar o seviço:
 * run: `./start.sh`
+* acessar: [localhost:8080](http://localhost:8080)
 
-Para parar:
+Para parar o serviço:
 * run: `./stop.sh`
 
-* acessar: [localhost:8080]
 
 #### Documentação:
 ###### JAVADOC
