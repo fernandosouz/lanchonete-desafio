@@ -2,6 +2,7 @@ package com.example.dextrastartup.demo.repositories;
 
 import com.example.dextrastartup.demo.exceptions.IngredienteNotFoundException;
 import com.example.dextrastartup.demo.model.IngredienteModel;
+import com.example.dextrastartup.demo.utils.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,11 @@ public class IngredienteRepository {
      */
     public static IngredienteModel retornaIngredientePorCodigo(Integer codigoDoIngrediente){
         switch (codigoDoIngrediente){
-            case 1: return new IngredienteModel(1, "Alface", 0.4, 1);
-            case 2: return new IngredienteModel(2, "Bacon", 2.00, 1);
-            case 3: return new IngredienteModel(3, "Hambúrguer de carne", 3.00, 1);
-            case 4: return new IngredienteModel(4, "Ovo", 0.80, 1);
-            case 5: return new IngredienteModel(5, "Queijo", 1.5, 1);
+            case 1: return new IngredienteModel(Constantes.CODIGO_ALFACE, "Alface", 0.4, 1);
+            case 2: return new IngredienteModel(Constantes.CODIGO_BACON, "Bacon", 2.00, 1);
+            case 3: return new IngredienteModel(Constantes.CODIGO_HAMBURGUER_CARNE, "Hambúrguer de carne", 3.00, 1);
+            case 4: return new IngredienteModel(Constantes.CODIGO_OVO, "Ovo", 0.80, 1);
+            case 5: return new IngredienteModel(Constantes.CODIGO_QUEIJO, "Queijo", 1.5, 1);
             default: throw new IngredienteNotFoundException(codigoDoIngrediente, IngredienteRepository.class);
         }
 
@@ -39,9 +40,7 @@ public class IngredienteRepository {
     static public List<IngredienteModel> retornaListadeIngredientesPorCodigo(List<Integer> listaDeCodigos){
         List<IngredienteModel> listaDeIngredientes = new ArrayList<>();
 
-        for(Integer codigo: listaDeCodigos){
-            listaDeIngredientes.add(IngredienteRepository.retornaIngredientePorCodigo(codigo));
-        }
+        listaDeCodigos.forEach(cod -> listaDeIngredientes.add(IngredienteRepository.retornaIngredientePorCodigo(cod)));
 
         return listaDeIngredientes;
     }

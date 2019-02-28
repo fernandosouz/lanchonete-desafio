@@ -130,5 +130,4 @@ public class DemoApplicationTests {
 
         assertEquals(quantidadeTotalDeIngredientes, 7);
     }
-
 }

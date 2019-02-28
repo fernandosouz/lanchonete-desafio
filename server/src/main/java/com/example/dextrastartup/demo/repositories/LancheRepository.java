@@ -2,6 +2,7 @@ package com.example.dextrastartup.demo.repositories;
 
 import com.example.dextrastartup.demo.exceptions.LancheNotFoundException;
 import com.example.dextrastartup.demo.model.LancheModel;
+import com.example.dextrastartup.demo.utils.Constantes;
 
 import java.util.Arrays;
 
@@ -23,23 +24,31 @@ public class LancheRepository {
     public static LancheModel retornaLanchePorCodigo(Integer codigoDoLanche){
         switch (codigoDoLanche){
             case 1:
-                return new LancheModel(1, "X-Bacon", IngredienteRepository.retornaListadeIngredientesPorCodigo(
-                        Arrays.asList(2,3,5)
+                return new LancheModel(Constantes.CODIGO_XBACON, "X-Bacon", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                        Arrays.asList(  Constantes.CODIGO_BACON,
+                                        Constantes.CODIGO_HAMBURGUER_CARNE,
+                                        Constantes.CODIGO_QUEIJO)
                 ));
             case 2:
-                return new LancheModel(2, "X-Burguer", IngredienteRepository.retornaListadeIngredientesPorCodigo(
-                        Arrays.asList(3,5)
+                return new LancheModel(Constantes.CODIGO_XBURGUER, "X-Burguer", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                        Arrays.asList(  Constantes.CODIGO_HAMBURGUER_CARNE,
+                                        Constantes.CODIGO_QUEIJO)
                 ));
             case 3:
-                return new LancheModel(3, "X-Egg", IngredienteRepository.retornaListadeIngredientesPorCodigo(
-                        Arrays.asList(3,4,5)
+                return new LancheModel(Constantes.CODIGO_XEGG, "X-Egg", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                        Arrays.asList(  Constantes.CODIGO_HAMBURGUER_CARNE,
+                                        Constantes.CODIGO_OVO,
+                                        Constantes.CODIGO_QUEIJO)
                 ));
             case 4:
-                return new LancheModel(4, "X-Egg Bacon", IngredienteRepository.retornaListadeIngredientesPorCodigo(
-                        Arrays.asList(2,3,4,5)
+                return new LancheModel(Constantes.CODIGO_XEGG_BACON, "X-Egg Bacon", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                        Arrays.asList(  Constantes.CODIGO_OVO,
+                                        Constantes.CODIGO_BACON,
+                                        Constantes.CODIGO_HAMBURGUER_CARNE,
+                                        Constantes.CODIGO_QUEIJO)
                 ));
             case 5:
-                return new LancheModel(5, "Personalizado", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                return new LancheModel(Constantes.CODIGO_PERSONALIZADO, "Personalizado", IngredienteRepository.retornaListadeIngredientesPorCodigo(
                         Arrays.asList()
                 ));
             default:

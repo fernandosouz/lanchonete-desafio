@@ -9,7 +9,7 @@ import com.example.dextrastartup.demo.model.PromocaoModel;
 /**
  * Classe que simula o repositório de informações da entidade "Promoção".
  */
-public class PromocaoRepository {
+public class PromocaoRepository{
 
     /**Método que retorna uma promoção específica de acordo com o código passado
      * @author Fernando Henrique de Souza

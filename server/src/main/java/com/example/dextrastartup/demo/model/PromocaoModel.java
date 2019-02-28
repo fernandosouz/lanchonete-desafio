@@ -1,7 +1,5 @@
 package com.example.dextrastartup.demo.model;
 
-import com.example.dextrastartup.demo.utils.AbstractModel;
-
 
 /**
  * Criado por  Fernando Henrique de Souza on 23/02/19.

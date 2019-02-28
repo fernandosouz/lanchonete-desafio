@@ -2,7 +2,6 @@ package com.example.dextrastartup.demo.model;
 
 import com.example.dextrastartup.demo.repositories.IngredienteRepository;
 import com.example.dextrastartup.demo.repositories.LancheRepository;
-import com.example.dextrastartup.demo.utils.AbstractModel;
 
 import java.util.*;
 

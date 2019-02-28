@@ -1,4 +1,4 @@
-package com.example.dextrastartup.demo.utils;
+package com.example.dextrastartup.demo.model;
 
 public class AbstractModel {
 

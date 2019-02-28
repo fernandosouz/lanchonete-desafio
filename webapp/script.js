@@ -2,8 +2,6 @@
   var lancheEscolhido = 0;
 
   function chamaServicoCalculoDoPreco(){
-
-      console.log(document.getElementById("toggleOption").innerText);
       var listaDeIngredientes = [];
       listaDeIngredientes.push({codigo: 1, quantidade: 2, descricao:"", valor: 1.0});
       var ingrediente = {};
@@ -27,6 +25,7 @@
         data: JSON.stringify(a),
         dataType: "json",
         success: function (result) {
+            console.log(result);
             mostraResultados(result);
         },
         error: function (xhr, ajaxOptions, thrownError) {
