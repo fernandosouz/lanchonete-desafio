@@ -4,6 +4,7 @@ import com.example.dextrastartup.demo.model.*;
 import com.example.dextrastartup.demo.controllers.LancheController;
 import com.example.dextrastartup.demo.repositories.LancheRepository;
 import com.example.dextrastartup.demo.wrappers.LancheWrapperRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
  * @return Response com as alterações
  */
 //TODO - Usar SWAGGER
+@ResponseStatus(HttpStatus.OK)
 public class LancheEndpoint {
     @RequestMapping(value="/detalhesDoPedido", method=RequestMethod.POST,consumes="application/json",produces="application/json")
     @ResponseBody

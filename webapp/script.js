@@ -21,7 +21,7 @@
                 "codigoDoLanche": lancheEscolhido}
 
       $.ajax({
-        url: "http://localhost:8080/lanche/detalhesDoPedido",
+        url: "http://localhost:8089/lanche/detalhesDoPedido",
         type: "POST",
         contentType : "application/json",
         data: JSON.stringify(a),
