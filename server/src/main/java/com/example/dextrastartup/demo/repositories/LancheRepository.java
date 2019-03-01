@@ -24,7 +24,7 @@ public class LancheRepository {
     public static LancheModel retornaLanchePorCodigo(Integer codigoDoLanche){
         switch (codigoDoLanche){
             case 1:
-                return new LancheModel(Constantes.CODIGO_XBACON, "X-Bacon", IngredienteRepository.retornaListadeIngredientesPorCodigo(
+                return new LancheModel(Constantes.CODIGO_XBACON, "X-Baconzaçoo", IngredienteRepository.retornaListadeIngredientesPorCodigo(
                         Arrays.asList(  Constantes.CODIGO_BACON,
                                         Constantes.CODIGO_HAMBURGUER_CARNE,
                                         Constantes.CODIGO_QUEIJO)

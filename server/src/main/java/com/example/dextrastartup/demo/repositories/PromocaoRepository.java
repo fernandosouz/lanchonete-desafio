@@ -1,5 +1,9 @@
 package com.example.dextrastartup.demo.repositories;
 
+import com.example.dextrastartup.demo.model.CalculadorasDePromocao.CalculadoraDePromocaoLight;
+import com.example.dextrastartup.demo.model.CalculadorasDePromocao.CalculadoraDePromocaoMuitaCarne;
+import com.example.dextrastartup.demo.model.CalculadorasDePromocao.CalculadoraDePromocaoMuitoQueijo;
+import com.example.dextrastartup.demo.exceptions.PromocaoNotFoundException;
 import com.example.dextrastartup.demo.model.PromocaoModel;
 
 /**
@@ -19,12 +23,13 @@ public class PromocaoRepository{
     public static PromocaoModel retornaPromocaoPorCodigo(Integer codigoDaPromocao){
         switch (codigoDaPromocao) {
             case 1:
-                return new PromocaoModel(1, "Light", "Você ganho 10% de desconto!", 1);
+                return new PromocaoModel(
+                        1, "Light", "Você ganho 10% de desconto!", 1, new CalculadoraDePromocaoLight());
             case 2:
-                return new PromocaoModel(2, "Muita carne", "A cada três porções de carne, você só pagou duas!", 0);
+                return new PromocaoModel(2, "Muita carne", "A cada três porções de carne, você só pagou duas!", 0, new CalculadoraDePromocaoMuitaCarne());
             case 3:
-                return new PromocaoModel(3, "Muito queijo", "A cada três porções de queijo, você só pagou duas!", 0);
-            default: return new PromocaoModel(4, "Inválido", "Inválido", 0);
+                return new PromocaoModel(3, "Muito queijo", "A cada três porções de queijo, você só pagou duas!", 0, new CalculadoraDePromocaoMuitoQueijo());
+            default: throw new PromocaoNotFoundException(codigoDaPromocao, PromocaoRepository.class);
         }
 
     }

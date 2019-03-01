@@ -60,29 +60,15 @@ public class LancheController {
         if(codigoDaPromocao == 1){
             quantidadeDeAplicacoes = 1;
         }
+
         PromocaoModel promocao = PromocaoRepository.retornaPromocaoPorCodigo(codigoDaPromocao);
         lanche.getListaDePromocoes().add(promocao);
         promocao.setQuantidade(quantidadeDeAplicacoes);
+        double valorASerDescontado = 0.0;
+        valorASerDescontado = promocao.calculadoraDePromocao.calcula(this.lanche);
+        promocao.setCalculadoraDePromocao(null);
 
-        switch (codigoDaPromocao){
-            case 1:
-                /*Promoção 1 - Desconto de 10%*/
-                lanche.setValorComDesconto(lanche.getValorTotal() - lanche.getValorTotal()/10);
-                break;
-            case 2:
-                /*Promoção 3 - Desconta 1 porção a cada 3 porções de hambúrguer de carne.*/
-                lanche.setValorComDesconto(lanche.getValorComDesconto() - (quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(Constantes.CODIGO_HAMBURGUER_CARNE)
-                                        .getValor()));
-                break;
-            case 3:
-                /*Promoção 2 - Desconta 1 porção a cada 3 porções de queijo.*/
-                lanche.setValorComDesconto(lanche.getValorComDesconto() - (
-                                        quantidadeDeAplicacoes * IngredienteRepository.retornaIngredientePorCodigo(Constantes.CODIGO_QUEIJO)
-                                                .getValor()));
-                break;
-            default:
-                break;
-        }
+        lanche.setValorComDesconto(lanche.getValorComDesconto() - valorASerDescontado);
     }
 
     /**Esse método contém a regra de negócio que informa se a promoção deve ou não ser aplicada.
