@@ -56,7 +56,7 @@ public class LancheController {
      * @param codigoDaPromocao Código da promoção que será aplicada
      * @param quantidadeDeAplicacoes Quantidade de vezes que a promoção será aplicada
      */
-    public void aplicaPromocao(Integer codigoDaPromocao, Integer quantidadeDeAplicacoes){
+    private void aplicaPromocao(Integer codigoDaPromocao, Integer quantidadeDeAplicacoes){
         if(codigoDaPromocao == 1){
             quantidadeDeAplicacoes = 1;
         }
@@ -92,7 +92,7 @@ public class LancheController {
      * @param codigoDaPromocao Código da promoção que será aplicada
      * @return boolean que representa se o lanche participa da promoção
      */
-    public Boolean participaDaPromocao(Integer codigoDaPromocao) {
+    private Boolean participaDaPromocao(Integer codigoDaPromocao) {
         switch (codigoDaPromocao) {
             case 1:
                 IngredienteModel ingredienteAlface = new IngredienteModel(Constantes.CODIGO_ALFACE);
@@ -168,7 +168,10 @@ public class LancheController {
      */
     public LancheModel aplicarAlteracoes(List<IngredienteModel> ingredienteList){
 
-        ingredienteList.forEach(i -> adicionarIngredientePorCodigoEQuantidade(i.getCodigo(), i.getQuantidade()));
+        ingredienteList.forEach(i -> {
+                if(i.getQuantidade() == 0)  return;
+                adicionarIngredientePorCodigoEQuantidade(i.getCodigo(), i.getQuantidade());
+        });
 
         aplicaPromocoes();
 

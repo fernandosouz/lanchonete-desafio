@@ -121,7 +121,12 @@ public class LancheModel extends AbstractModel {
      */
     public int retornaQuantidadeDePorcoesPorCodigo(Integer codigo){
         int index = this.getListaDeIngredientes().indexOf(IngredienteRepository.retornaIngredientePorCodigo(codigo));
-        return this.getListaDeIngredientes().get(index).getQuantidade();
+        if(index >= 0) {
+            return this.getListaDeIngredientes().get(index).getQuantidade();
+        }else {
+            return 0;
+        }
+
     }
 
     @Override
