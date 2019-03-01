@@ -15,6 +15,7 @@ Somos uma startup do ramo de alimentos e precisamos de uma aplicação web para 
 * JavaDOCS criado nos métodos/classes necessários(as);
 * Configuração dos containers - Docker;
 * Configuração do orquestrador de containers - Docker Compose;
+* Criação do script de inicialização;
 
 #### Necessário:
 * Java 8+;

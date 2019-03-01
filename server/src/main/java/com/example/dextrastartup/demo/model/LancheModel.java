@@ -2,6 +2,7 @@ package com.example.dextrastartup.demo.model;
 
 import com.example.dextrastartup.demo.repositories.IngredienteRepository;
 import com.example.dextrastartup.demo.repositories.LancheRepository;
+import org.decimal4j.util.DoubleRounder;
 
 import java.util.*;
 
@@ -56,7 +57,7 @@ public class LancheModel extends AbstractModel {
     }
 
     public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+        this.valorTotal = DoubleRounder.round(valorTotal, 2);
     }
 
     public double getValorComDesconto() {
@@ -64,7 +65,7 @@ public class LancheModel extends AbstractModel {
     }
 
     public void setValorComDesconto(double valorComDesconto) {
-        this.valorComDesconto = valorComDesconto;
+        this.valorComDesconto = DoubleRounder.round(valorComDesconto, 2);
     }
 
     public List<PromocaoModel> getListaDePromocoes() {
