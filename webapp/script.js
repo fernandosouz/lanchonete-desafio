@@ -19,13 +19,12 @@
                 "codigoDoLanche": lancheEscolhido}
 
       $.ajax({
-        url: "http://localhost:8080/lanche/detalhesDoPedido",
+        url: "http://localhost:8089/lanche/detalhesDoPedido",
         type: "POST",
         contentType : "application/json",
         data: JSON.stringify(a),
         dataType: "json",
         success: function (result) {
-            console.log(result);
             mostraResultados(result);
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -54,14 +53,12 @@
       document.getElementById("resultados").style.visibility = 'hidden';
       document.getElementById("lista-ingredientes").style.display = 'none';
 
-      console.log(resultados.listaDePromocoes );
       var aplicouPromocao = resultados.listaDePromocoes.length > 0;
 
       var valorTotal = resultados.valorTotal;
       document.getElementById('resultados').style.visibility = 'visible';
       document.getElementById('mostraValortotal').innerText = "O valor total do seu pedido é: R$" + resultados.valorTotal;
 
-      console.log(aplicouPromocao);
       if(aplicouPromocao){
           document.getElementById("promocoes").style.visibility = 'visible';
           document.getElementById("valor-desconto").innerText = "Valor com desconto: R$" + resultados.valorComDesconto;

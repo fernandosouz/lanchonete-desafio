@@ -22,11 +22,11 @@ public class IngredienteRepository {
      */
     public static IngredienteModel retornaIngredientePorCodigo(Integer codigoDoIngrediente){
         switch (codigoDoIngrediente){
-            case 1: return new IngredienteModel(Constantes.CODIGO_ALFACE, "Alface", 0.4, 1);
-            case 2: return new IngredienteModel(Constantes.CODIGO_BACON, "Bacon", 2.00, 1);
-            case 3: return new IngredienteModel(Constantes.CODIGO_HAMBURGUER_CARNE, "Hambúrguer de carne", 3.00, 1);
-            case 4: return new IngredienteModel(Constantes.CODIGO_OVO, "Ovo", 0.80, 1);
-            case 5: return new IngredienteModel(Constantes.CODIGO_QUEIJO, "Queijo", 1.5, 1);
+            case 1: return new IngredienteModel(Constantes.CODIGO_ALFACE, "Alface", Constantes.VALOR_ALFACE, 1);
+            case 2: return new IngredienteModel(Constantes.CODIGO_BACON, "Bacon", Constantes.VALOR_BACON, 1);
+            case 3: return new IngredienteModel(Constantes.CODIGO_HAMBURGUER_CARNE, "Hambúrguer de carne", Constantes.VALOR_HAMBURGUER_CARNE, 1);
+            case 4: return new IngredienteModel(Constantes.CODIGO_OVO, "Ovo", Constantes.VALOR_OVO, 1);
+            case 5: return new IngredienteModel(Constantes.CODIGO_QUEIJO, "Queijo", Constantes.VALOR_QUEIJO, 1);
             default: throw new IngredienteNotFoundException(codigoDoIngrediente, IngredienteRepository.class);
         }
 
